@@ -5,18 +5,14 @@
 2. cp env-example .env
 
 3. update database info in .env file
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=warehouse_db
-DB_USERNAME=warehouse_user
-DB_PASSWORD=password
 
 4. cd laradock-warehouse
 
-5. docker-compose up -d mysql nginx
+5. repeate step 2 and 3
 
-6. docker-compose down
+6. docker-compose up -d mysql nginx
+
+7. docker-compose down
 
 
 ## License
