@@ -2,13 +2,13 @@
 
 1. Pull this repo
 
-2. cp env-example .env
+2. update database info in .env file
 
-3. update database info in .env file
+3. cd laradock-warehouse
 
-4. cd laradock-warehouse
+4. cp env-example .env
 
-5. repeate step 2 and 3
+5. update database info in .env file
 
 6. docker-compose up -d mysql nginx
 
