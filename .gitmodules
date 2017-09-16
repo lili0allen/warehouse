@@ -1,0 +1,3 @@
+[submodule "laradock-warehouse"]
+	path = laradock-warehouse
+	url = https://github.com/LaraDock/laradock.git
