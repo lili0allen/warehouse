@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Warehouse extends Model
 {
-    protected $fillable = array('location', 'manager', 'capacity', 'contact', 'status');
+    protected $fillable = [
+        'location', 'manager', 'capacity', 'contact', 'status'   
+    ];
 
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
+
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }
