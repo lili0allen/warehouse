@@ -2,25 +2,27 @@
 
 1. Pull this repo
 
-2. composer install
+2. ```composer install```
 
-3. git submodule init
+3. ```git submodule init```
 
-4. git submodule update
+4. ```git submodule update```
 
-5. cp .env.example .env
+5. ```cp .env.example .env```
 
 6. update database info in .env file
 
-7. cd laradock-warehouse
+7. ```php artisan key:generate```
 
-8. cp env-example .env
+7. ```cd laradock-warehouse```
+
+8. ```cp env-example .env```
 
 9. update database info in .env file
 
-10. docker-compose up -d mysql nginx
+10. ```docker-compose up -d mysql nginx```
 
-11. docker-compose down
+11. ```docker-compose down```
 
 
 ## License
