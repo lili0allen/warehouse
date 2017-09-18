@@ -19,9 +19,6 @@ class CreateTransactionsTable extends Migration
             $table->decimal('total', 10, 2);
             $table->smallInteger('status');
             $table->timestamps();
-
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 
