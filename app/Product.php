@@ -24,8 +24,8 @@ class Product extends Model
 
     protected $guarded = ['id'];
 
-    public function warehouse()
+    public function warehouses()
     {
-        return $this->belongsTo('App\Warehouse');
+        return $this->hasMany('App\Warehouse');
     }
 }
