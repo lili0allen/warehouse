@@ -24,11 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('dateProduced'); 
             $table->string('placeProduced'); 
             $table->smallInteger('canExpired'); 
-            $table->string('dateExpired'); 
-
-            $table->integer('supplier_id')->unsigned();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
-            
+            $table->string('dateExpired');
             $table->timestamps();
         });
     }
