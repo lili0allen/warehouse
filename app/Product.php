@@ -9,11 +9,8 @@ class Product extends Model
     protected $fillable = [
         'sku', 
         'name', 
-        'supplier', 
         'description', 
         'status', 
-        'categories', 
-        'attributes', 
         'quantity', 
         'price', 
         'dateProduced', 
@@ -21,11 +18,31 @@ class Product extends Model
         'canExpired', 
         'dateExpired'   
     ];
-
+    
     protected $guarded = ['id'];
 
     public function warehouses()
     {
-        return $this->hasMany('App\Warehouse');
+        return $this->belongsToMany('App\Warehouse');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
+
+    public function attributes()
+    {
+        return $this->hasMany('App\Attribute');
+    }
+    
+    public function transactions()
+    {
+        return $this->belongsToMany('App\Transaction');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo('App\Supplier');
     }
 }

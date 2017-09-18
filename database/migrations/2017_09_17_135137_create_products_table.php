@@ -17,17 +17,18 @@ class CreateProductsTable extends Migration
             $table->increments('id'); 
             $table->string('sku'); 
             $table->string('name'); 
-            $table->string('supplier'); 
             $table->string('description'); 
             $table->smallInteger('status'); 
-            $table->string('categories'); 
-            $table->string('attributes'); 
             $table->string('quantity'); 
             $table->integer('price'); 
             $table->string('dateProduced'); 
             $table->string('placeProduced'); 
             $table->smallInteger('canExpired'); 
             $table->string('dateExpired'); 
+
+            $table->integer('supplier_id')->unsigned();
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
