@@ -15,7 +15,8 @@ class WarehouseController extends Controller
     public function index()
     {
         //
-        return view('warehouse.index', ['name' => '丽丽 2B']);
+        $warehouses = Warehouse::where('id', 1)->get();
+        return view('warehouse.index', compact('warehouses'));
     }
 
     /**
@@ -26,6 +27,7 @@ class WarehouseController extends Controller
     public function create()
     {
         //
+        return view('warehouse.create');
     }
 
     /**
