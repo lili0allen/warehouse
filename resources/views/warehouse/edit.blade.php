@@ -1,3 +1,4 @@
+@section('content')
     <h1>Candidates</h1>
     <div>
         @forelse($warehouses as $warehouse)
@@ -17,3 +18,4 @@
             <p>There are no warehouse to display!</p>
         @endforelse
     </div>
+@stop
