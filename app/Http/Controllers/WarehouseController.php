@@ -43,13 +43,13 @@ class WarehouseController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
+        $rules = [
             'location' => 'required',
             'manager' => 'required',
             'capacity' => 'required|numeric',
             'contact' => 'required',
             'status' => 'required'
-        );
+        ];
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
