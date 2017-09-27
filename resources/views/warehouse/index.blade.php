@@ -20,13 +20,13 @@
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <td>ID</td>
-            <td>Location</td>
-            <td>Manager</td>
-            <td>Capacity</td>
-            <td>Contact</td>
-            <td>Status</td>
-            <td>Actions</td>
+            <th>ID</th>
+            <th>Location</th>
+            <th>Manager</th>
+            <th>Capacity</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
