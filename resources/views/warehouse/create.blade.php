@@ -18,30 +18,30 @@
 
     <div class="form-group">
         {{ Form::label('location', 'Location') }}
-        {{ Form::text('location', null,  array('class' => 'form-control')) }}
+        {{ Form::text('location', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('manager', 'Manager') }}
-        {{ Form::text('manager', null, array('class' => 'form-control')) }}
+        {{ Form::text('manager', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('capacity', 'Capacity') }}
-        {{ Form::text('capacity', null,  array('class' => 'form-control')) }}
+        {{ Form::text('capacity', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('contact', 'Contact') }}
-        {{ Form::text('contact', null, array('class' => 'form-control')) }}
+        {{ Form::text('contact', null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
         {{ Form::label('status', 'Status') }}
-        {{ Form::select('status', array('1'=>'active', '2'=>'deactive'), array('class' => 'form-control')) }}
+        {{ Form::select('status', ['0'=>'inactive', '1'=>'active'], ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit('Create the warehouse!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Create the warehouse!', ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 
