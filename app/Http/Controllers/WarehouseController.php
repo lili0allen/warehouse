@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Warehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class WarehouseController extends Controller
 {
@@ -16,7 +21,7 @@ class WarehouseController extends Controller
     {
         //
         $warehouses = Warehouse::all();
-        return view('warehouse.index', compact('warehouses'));
+        return View::make('warehouse.index')->with('warehouses', $warehouses);
     }
 
     /**
@@ -27,24 +32,50 @@ class WarehouseController extends Controller
     public function create()
     {
         //
-        return view('warehouse.create');
+        return View::make('warehouse.create')->with('warehouse', new Warehouse());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'location' => 'required',
+            'manager' => 'required',
+            'capacity' => 'required|numeric',
+            'contact' => 'required',
+            'status' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('warehouse/create')
+                ->withErrors($validator);
+        } else {
+            // store
+            $warehouse = new Warehouse();
+            $warehouse->location = Input::get('location');
+            $warehouse->manager = Input::get('manager');
+            $warehouse->capacity = Input::get('capacity');
+            $warehouse->contact = Input::get('contact');
+            $warehouse->status = Input::get('status');
+            $warehouse->save();
+
+            // redirect
+            Session::flash('message', 'Successfully created warehouse!');
+            return Redirect::to('warehouse');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Warehouse  $warehouse
+     * @param  \App\Warehouse $warehouse
      * @return \Illuminate\Http\Response
      */
     public function show(Warehouse $warehouse)
@@ -55,7 +86,7 @@ class WarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Warehouse  $warehouse
+     * @param  \App\Warehouse $warehouse
      * @return \Illuminate\Http\Response
      */
     public function edit(Warehouse $warehouse)
@@ -66,8 +97,8 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Warehouse  $warehouse
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Warehouse $warehouse
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Warehouse $warehouse)
@@ -78,11 +109,17 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Warehouse  $warehouse
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Warehouse $warehouse)
+    public function destroy($id)
     {
-        //
+        // delete
+        $warehouse = Warehouse::find($id);
+        $warehouse->delete();
+
+        // redirect
+        Session::flash('message', 'Successfully deleted the nerd!');
+        return Redirect::to('warehouse');
     }
 }
