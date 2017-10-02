@@ -51,7 +51,6 @@ class WarehouseController extends Controller
             'status' => 'required'
         ];
         $validator = Validator::make(Input::all(), $rules);
-
         // process the login
         if ($validator->fails()) {
             return Redirect::to('warehouse/create')
@@ -75,35 +74,68 @@ class WarehouseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Warehouse $warehouse
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Warehouse $warehouse)
+    public function show($id)
     {
-        //
+        /** @var Warehouse $warehouse */
+        $warehouse = Warehouse::find($id);
+        // show the view and pass the nerd to it
+        return View::make('warehouse.show')
+            ->with('warehouse', $warehouse);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Warehouse $warehouse
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Warehouse $warehouse)
+    public function edit($id)
     {
-        //
+        /** @var Warehouse $warehouse */
+        $warehouse = Warehouse::find($id);
+        // show the view and pass the nerd to it
+        return View::make('warehouse.edit')
+            ->with('warehouse', $warehouse);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Warehouse $warehouse
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Warehouse $warehouse)
+    public function update(Request $request, int $id)
     {
-        //
+        $rules = [
+            'location' => 'required',
+            'manager' => 'required',
+            'capacity' => 'required|numeric',
+            'contact' => 'required',
+            'status' => 'required'
+        ];
+        $validator = Validator::make(Input::all(), $rules);
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('warehouse/create')
+                ->withErrors($validator);
+        } else {
+            // store
+            $warehouse = Warehouse::find($id);
+            $warehouse->location = Input::get('location');
+            $warehouse->manager = Input::get('manager');
+            $warehouse->capacity = Input::get('capacity');
+            $warehouse->contact = Input::get('contact');
+            $warehouse->status = Input::get('status');
+            $warehouse->save();
+
+            // redirect
+            Session::flash('message', 'Successfully created warehouse!');
+            return Redirect::to('warehouse');
+        }
     }
 
     /**
